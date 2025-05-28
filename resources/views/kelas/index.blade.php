@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4">Data Mahasiswa</h1>
-    <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary mb-3">Tambah Mahasiswa</a>
+    <h1 class="my-4">Data Kelas</h1>
+    <a href="{{ route('kelas.create') }}" class="btn btn-primary mb-3">Tambah Kelas</a>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -16,27 +16,20 @@
             <thead class="table-light">
                 <tr>
                     <th>#</th>
-                    <th>Nama</th>
-                    <th>NIM</th>
-                    <th>Semester</th>
-                    <th>Kelas</th>
-                    <th>Alamat</th>
+                    <th>Nama Kelas</th>
+                    <th>Nomor Kelas</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($mahasiswas as $mahasiswa)
+                @foreach($kelas as $kls)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $mahasiswa->nama }}</td>
-                    <td>{{ $mahasiswa->nim }}</td>
-                    <td>{{ $mahasiswa->semester }}</td>
-                    <td>{{ $mahasiswa->kelas->nama_kelas }} - {{ $mahasiswa->kelas->nomor_kelas }}</td>
-                    <td>{{ $mahasiswa->alamat }}</td>
-
+                    <td>{{ $kls->nama_kelas }}</td>
+                    <td>{{ $kls->nomor_kelas }}</td>
                     <td>
-                        <a href="{{ route('mahasiswa.edit', $mahasiswa->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('mahasiswa.destroy', $mahasiswa->id) }}" method="POST" class="d-inline-block">
+                        <a href="{{ route('kelas.edit', $kls->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form action="{{ route('kelas.destroy', $kls->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

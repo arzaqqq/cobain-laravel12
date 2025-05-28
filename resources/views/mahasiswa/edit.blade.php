@@ -24,6 +24,17 @@
             </select>
         </div>
         <div class="mb-3">
+            <label for="kelas_id" class="form-label">Kelas</label>
+            <select class="form-select" id="kelas_id" name="kelas_id" required>
+                <option value="">-- Pilih Kelas --</option>
+                @foreach($kelas as $k)
+                    <option value="{{ $k->id }}" {{ $mahasiswa->kelas_id == $k->id ? 'selected' : '' }}>
+                        {{ $k->nama_kelas }} - {{ $k->nomor_kelas }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
             <textarea class="form-control" id="alamat" name="alamat" required>{{ old('alamat', $mahasiswa->alamat) }}</textarea>
         </div>
